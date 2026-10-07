@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Your 1:1 Strategy Audit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style id="audit-css">
+:root{
+  --bg:#0b0a12;--bg2:#12101d;--surf:#15121f;--surf2:#1c1829;--line:rgba(255,255,255,.08);--line2:rgba(255,255,255,.14);
+  --txt:#f1eefb;--soft:#c9c3dd;--muted:#8b85a3;--lav:#b79cf5;--vio:#7c5cf0;--gold:#e8c878;--mint:#7fe0b8;--pink:#f08bb0;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f7f5fc;--bg2:#efebf8;--surf:#ffffff;--surf2:#f2eef9;--line:rgba(20,10,50,.08);--line2:rgba(20,10,50,.16);--txt:#1a1530;--soft:#3c3558;--muted:#6f6890;--lav:#7c5cf0;--gold:#a8812c;--mint:#1f9d6b;--pink:#c2477a}}
+:root[data-theme="light"]{--bg:#f7f5fc;--bg2:#efebf8;--surf:#ffffff;--surf2:#f2eef9;--line:rgba(20,10,50,.08);--line2:rgba(20,10,50,.16);--txt:#1a1530;--soft:#3c3558;--muted:#6f6890;--lav:#7c5cf0;--gold:#a8812c;--mint:#1f9d6b;--pink:#c2477a}
+:root[data-theme="dark"]{--bg:#0b0a12;--bg2:#12101d;--surf:#15121f;--surf2:#1c1829;--line:rgba(255,255,255,.08);--line2:rgba(255,255,255,.14);--txt:#f1eefb;--soft:#c9c3dd;--muted:#8b85a3;--lav:#b79cf5;--gold:#e8c878;--mint:#7fe0b8;--pink:#f08bb0}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--txt);font-family:Outfit,system-ui,-apple-system,"Segoe UI",sans-serif;font-weight:300;line-height:1.6;
+  background-image:radial-gradient(ellipse at 0% 0%,rgba(124,92,240,.22),transparent 45%),radial-gradient(ellipse at 100% 100%,rgba(127,224,184,.07),transparent 45%);background-attachment:fixed}
+.wrap{max-width:920px;margin:0 auto;padding:56px 18px 90px}
+h1,h2,h3{font-family:Outfit,system-ui,sans-serif;font-weight:700;letter-spacing:-.02em;margin:0}
+.serif{font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-weight:400}
+.mono{font-family:"DM Mono",ui-monospace,Menlo,monospace}
+a{color:var(--lav);text-decoration:none;border-bottom:1px solid rgba(183,156,245,.4)}
+a:hover{border-color:var(--lav)}
+a:focus-visible,button:focus-visible,textarea:focus-visible,input:focus-visible{outline:2px solid var(--lav);outline-offset:3px;border-radius:6px}
+
+/* hero */
+.hero{padding:0 0 34px}
+.hero .who{font-family:"DM Mono",monospace;font-size:13px;letter-spacing:.08em;color:var(--lav);margin:0 0 18px}
+.hero h1{font-size:clamp(44px,8.5vw,92px);line-height:.95;letter-spacing:-.045em}
+.hero h1 .serif{color:var(--lav);font-size:1.04em;letter-spacing:-.01em}
+.hero .desc{color:var(--soft);font-size:18px;max-width:600px;margin:22px 0 0}
+.hero .prep{color:var(--muted);font-size:14px;margin:14px 0 0}
+.replay{display:inline-block;margin-top:18px;font-family:"DM Mono",monospace;font-size:13px}
+
+/* sections */
+section{margin-top:26px}
+.card{position:relative;background:linear-gradient(135deg,rgba(124,92,240,.13) 0%,var(--surf) 40%,var(--bg2) 100%);border:1px solid var(--line2);border-radius:26px;padding:32px 34px;overflow:hidden}
+.card::before{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:44px 44px;opacity:.5;-webkit-mask-image:linear-gradient(90deg,transparent 35%,#000 100%);mask-image:linear-gradient(90deg,transparent 35%,#000 100%)}
+.card>*{position:relative}
+@media(max-width:600px){.card{padding:24px 20px;border-radius:20px}.wrap{padding-top:36px}}
+.sec-title{font-size:clamp(26px,4.2vw,36px);line-height:1.08;margin:0 0 6px}
+.sec-sub{color:var(--muted);font-size:15px;margin:0 0 22px}
+
+/* snapshot stats */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:640px){.stats{grid-template-columns:repeat(2,1fr)}}
+.stat{border:1px solid var(--line2);border-radius:18px;padding:16px 16px 14px;background:rgba(0,0,0,.14)}
+:root[data-theme="light"] .stat{background:var(--surf2)}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .stat{background:var(--surf2)}}
+.stat .v{font-weight:700;font-size:28px;letter-spacing:-.03em;line-height:1.05}
+.stat .l{color:var(--muted);font-size:13px;margin-top:6px;line-height:1.35}
+.stat.warn .v{color:var(--pink)}
+.stat.good .v{color:var(--mint)}
+.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.links a{border:1px solid var(--line2);border-radius:99px;padding:8px 14px;font-size:14px;color:var(--soft)}
+.links a span{color:var(--muted);margin-left:6px}
+
+/* lists */
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:18px 30px}
+@media(max-width:700px){.twocol{grid-template-columns:1fr}}
+.block h3{font-size:17px;font-weight:600;margin:0 0 8px;color:var(--txt)}
+ul.dots{list-style:none;margin:0;padding:0}
+ul.dots li{position:relative;padding-left:18px;margin:0 0 8px;color:var(--soft);font-size:15.5px}
+ul.dots li::before{content:"";position:absolute;left:0;top:.62em;width:7px;height:7px;border-radius:50%;background:var(--lav);opacity:.8}
+.goal{display:grid;grid-template-columns:minmax(120px,190px) 1fr;border-top:1px solid var(--line)}
+.goal:last-child{border-bottom:1px solid var(--line)}
+.goal div{padding:12px 0}
+.goal .k{color:var(--gold);font-size:14px;font-weight:500;padding-right:16px}
+.goal .val{color:var(--soft);font-size:15.5px}
+@media(max-width:560px){.goal{grid-template-columns:1fr}.goal .k{padding-bottom:0}}
+
+/* bottleneck: the one loud moment */
+.bottleneck{border-color:rgba(232,200,120,.35)}
+.quote{font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-size:clamp(22px,3.4vw,30px);line-height:1.3;color:var(--gold);margin:0 0 22px;max-width:760px}
+.quote::before{content:"\201C"}.quote::after{content:"\201D"}
+.verdict{font-size:clamp(24px,3.6vw,32px);font-weight:700;line-height:1.15;letter-spacing:-.02em;margin:0 0 16px;max-width:760px}
+
+/* big picture */
+.moves{display:grid;gap:14px}
+.move{display:grid;grid-template-columns:54px 1fr;gap:6px 18px;border:1px solid var(--line2);border-radius:20px;padding:22px 22px 18px;background:rgba(0,0,0,.12)}
+:root[data-theme="light"] .move{background:var(--surf2)}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .move{background:var(--surf2)}}
+.move .n{font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-size:46px;line-height:.9;color:var(--lav)}
+.move h3{font-size:20px;line-height:1.25;margin:4px 0 10px}
+.move ul.dots li{font-size:15px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.tag{font-size:13px;color:var(--soft);border:1px solid var(--line2);border-radius:99px;padding:5px 12px;background:rgba(124,92,240,.08)}
+a.tag{color:var(--lav);border-color:rgba(183,156,245,.45)}
+a.tag:hover{border-color:var(--lav)}
+.ask{margin:22px 0 0;font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-size:24px;color:var(--gold)}
+@media(max-width:560px){.move{grid-template-columns:1fr}}
+
+/* notes + steps */
+.notes-view{white-space:pre-wrap;color:var(--soft);font-size:15.5px;min-height:60px}
+.empty{color:var(--muted);font-style:italic}
+textarea,input[type=text]{width:100%;background:var(--bg2);color:var(--txt);border:1px solid var(--line2);border-radius:14px;padding:14px 16px;font:inherit;font-size:15.5px;line-height:1.55}
+textarea{min-height:220px;resize:vertical}
+.step{display:grid;grid-template-columns:36px 1fr;gap:14px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.step .num{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--vio);color:#fff;font-weight:600}
+.step.done .txt{text-decoration:line-through;color:var(--muted)}
+.step .txt{color:var(--soft);font-size:15.5px}
+.step label{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);margin-top:6px}
+.bar{display:flex;gap:12px;align-items:center;margin-top:18px;flex-wrap:wrap}
+button{font:inherit;font-weight:500;font-size:14px;border-radius:99px;padding:10px 18px;border:1px solid var(--line2);background:transparent;color:var(--txt);cursor:pointer}
+button.primary{background:var(--vio);border-color:var(--vio);color:#fff}
+button[disabled]{opacity:.5;cursor:default}
+.status{font-size:13px;color:var(--muted)}
+.hidden{display:none!important}
+/* feedback ask, last card before the sign-off */
+.feedback{border-color:color-mix(in srgb,var(--mint) 45%,transparent)}
+.feedback .sec-title{margin-bottom:14px}
+.fb-body{color:var(--soft);font-size:16px;max-width:680px;margin:0 0 12px}
+.fb-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.fb-links a{border:1px solid var(--line2);border-radius:99px;padding:10px 18px;font-size:14.5px;font-weight:500;color:var(--txt)}
+.fb-links a:hover{border-color:var(--mint)}
+.fb-links a span{color:var(--muted);font-weight:300;margin-left:8px}
+.eyebrow{font-family:"DM Mono",ui-monospace,Menlo,monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mint);margin:0 0 12px}
+.sign{margin-top:44px;font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-size:30px;color:var(--lav)}
+.foot{color:var(--muted);font-size:13px;margin-top:8px}
+@media (prefers-reduced-motion:no-preference){.hero h1{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+<script type="application/json" id="audit-data">{"client": {"name": "Luna (example client)", "brand": "The Moonlit Deck", "descriptor": "Made-up client for demonstration. Tarot reader, 22K on Instagram, paid community since 2025."}, "date": "September 2026", "replay_url": null, "snapshot": {"note": "Example numbers. Not a real client.", "stats": [{"value": "$2,140", "label": "Monthly recurring revenue"}, {"value": "86", "label": "Paying members"}, {"value": "79%", "label": "Monthly retention", "tone": "warn"}, {"value": "$118", "label": "Lifetime value per member"}, {"value": "1.8%", "label": "About-page conversion, last 30 days"}, {"value": "6", "label": "Signups from Instagram last month", "tone": "warn"}], "links": [{"label": "The Moonlit Deck", "url": "https://www.skool.com/", "note": "$29/mo"}, {"label": "Instagram", "url": "https://www.instagram.com/", "note": "22K"}]}, "now": [{"heading": "Your offer", "bullets": ["One membership at $29 a month.", "Private readings at $150, booked by DM, about 4 a month.", "Nothing between the two, and no link from one to the other."]}, {"heading": "Your members", "bullets": ["86 paying. About 18 leave each month.", "Most who leave go before their third payment.", "The ones who stay past month three tend to stay a year."]}, {"heading": "Your content", "bullets": ["A reel a day, about 300K views a month.", "Most reels end without a keyword or a look inside the room."]}], "goal_window": "Next 6 months", "goal": [{"label": "Income", "value": "$5,000 a month, recurring"}, {"label": "Delivery", "value": "Fewer one-off readings, more time in the community"}, {"label": "Hours", "value": "Four working days a week"}], "bottleneck": {"quote": "I post every single day and the community just isn't growing.", "verdict": "You don't have a reach problem. You have one $29 offer, and people leave before they have had a reason to stay.", "points": ["300K views sent 6 signups last month. The content works. It isn't pointing at the room.", "About 18 of 86 members leave each month, most before their third payment.", "$5,000 on the membership alone needs at least 37 new paying members a month. You're at about 14.", "Members already ask you for readings in the DMs. There is no offer for them to say yes to."]}, "big_picture": [{"title": "Add a rung above the membership", "points": ["Members are your warmest buyers and there is nothing to sell them after $29.", "Ten member readings a month at $150 adds $1,500, from people who already said yes once."], "tags": [{"label": "Member reading offer"}, {"label": "The ask, every call"}, {"label": "Win post, then one spot"}]}, {"title": "Keep members past their third payment", "points": ["Three in four who leave are gone by month three. Holding half of them is worth about $260 a month, every month.", "The first week decides it: one quick win, one person who says their name."], "tags": [{"label": "Start Here in 10 minutes"}, {"label": "Day-7 check-in"}, {"label": "Annual plan"}]}, {"title": "Point every reel at the room", "points": ["Same content, one keyword. At 300K views, even a 0.5% comment rate is 1,500 conversations a month.", "Show the inside of the community once a week, so people know what they are joining."], "tags": [{"label": "Comment keyword"}, {"label": "A–Z library", "url": "https://aefieldi.github.io/freegift/"}, {"label": "4 Stages of Ads", "url": "https://aefieldi.github.io/4-stages-of-ads/"}]}], "ask": "Which one do you want to go deeper on today?", "deep_dive_notes": "", "next_steps": [], "signoff": "xoxo, Amanda 💜"}</script>
+<script id="audit-js">
+(function(){
+  var DATA = JSON.parse(document.getElementById('audit-data').textContent);
+  var CSS = document.getElementById('audit-css').textContent;
+  var JS = document.getElementById('audit-js').textContent;
+  var canWrite = false, art = null, busy = false;
+
+  function el(tag, cls, text){var e=document.createElement(tag); if(cls) e.className=cls; if(text!=null) e.textContent=text; return e;}
+  function safeUrl(u){return /^https?:\/\//i.test(u||'') ? u : null;}
+  function link(label,url){var u=safeUrl(url); if(!u) return el('span',null,label); var a=el('a',null,label); a.href=u; a.target='_blank'; a.rel='noopener'; return a;}
+  function dots(items){var ul=el('ul','dots'); (items||[]).forEach(function(t){ul.appendChild(el('li',null,t));}); return ul;}
+  function card(extra){var c=el('div','card'+(extra?' '+extra:'')); return c;}
+  function head(c,title,sub){c.appendChild(el('h2','sec-title',title)); if(sub) c.appendChild(el('p','sec-sub',sub));}
+
+  function render(){
+    var app=document.getElementById('app'); app.textContent='';
+    var d=DATA, c=d.client||{};
+    document.title='Your 1:1 Strategy Audit · '+(c.name||'');
+
+    // hero
+    var hero=el('header','hero');
+    hero.appendChild(el('p','who',[c.name,c.brand].filter(Boolean).join(' / ')));
+    var h1=el('h1'); h1.appendChild(document.createTextNode('Your 1:1 ')); h1.appendChild(el('span','serif','Strategy Audit')); hero.appendChild(h1);
+    if(c.descriptor) hero.appendChild(el('p','desc',c.descriptor));
+    hero.appendChild(el('p','prep','Prepared by Amanda, Spiritual Business Skool'+(d.date?', '+d.date:'')+'. Where you are now, where you want to go, and the highest-leverage moves to get there.'));
+    if(safeUrl(d.replay_url)){var r=link('Watch the replay',d.replay_url); r.classList.add('replay'); hero.appendChild(r);}
+    app.appendChild(hero);
+
+    // snapshot
+    var s=d.snapshot||{}; var sc=card(); head(sc,'Snapshot', s.note||null);
+    var grid=el('div','stats');
+    (s.stats||[]).forEach(function(x){var b=el('div','stat'+(x.tone?' '+x.tone:'')); b.appendChild(el('div','v',x.value)); b.appendChild(el('div','l',x.label)); grid.appendChild(b);});
+    sc.appendChild(grid);
+    if((s.links||[]).length){var lk=el('div','links'); s.links.forEach(function(x){var a=link(x.label,x.url); if(x.note){a.appendChild(el('span',null,x.note));} lk.appendChild(a);}); sc.appendChild(lk);}
+    app.appendChild(wrapSec(sc));
+
+    // where you are now
+    if((d.now||[]).length){var nc=card(); head(nc,'Where you are now'); var tw=el('div','twocol');
+      d.now.forEach(function(b){var bl=el('div','block'); bl.appendChild(el('h3',null,b.heading)); bl.appendChild(dots(b.bullets)); tw.appendChild(bl);});
+      nc.appendChild(tw); app.appendChild(wrapSec(nc));}
+
+    // where you want to go
+    if((d.goal||[]).length){var gc=card(); head(gc,'Where you want to go', d.goal_window||'Next 3 to 6 months');
+      d.goal.forEach(function(g){var row=el('div','goal'); row.appendChild(el('div','k',g.label)); row.appendChild(el('div','val',g.value)); gc.appendChild(row);});
+      app.appendChild(wrapSec(gc));}
+
+    // bottleneck
+    var bn=d.bottleneck||{}; var bc=card('bottleneck'); head(bc,'Your biggest bottleneck');
+    if(bn.quote) bc.appendChild(el('p','quote',bn.quote));
+    if(bn.verdict) bc.appendChild(el('p','verdict',bn.verdict));
+    bc.appendChild(dots(bn.points)); app.appendChild(wrapSec(bc));
+
+    // big picture
+    var bp=card(); head(bp,'The big picture','Three moves. We go through all three, then pick one to go deep on together.');
+    var mv=el('div','moves');
+    (d.big_picture||[]).forEach(function(m,i){var row=el('div','move'); row.appendChild(el('div','n',String(i+1)));
+      var body=el('div'); body.appendChild(el('h3',null,m.title)); body.appendChild(dots(m.points)); row.appendChild(body);
+      if((m.tags||[]).length){var tg=el('div','tags'); m.tags.forEach(function(t){var c=safeUrl(t.url)?link(t.label,t.url):el('span',null,t.label); c.classList.add('tag'); tg.appendChild(c);}); body.appendChild(tg);}
+      mv.appendChild(row);});
+    bp.appendChild(mv); bp.appendChild(el('p','ask',d.ask||'Which one do you want to go deeper on today?'));
+    app.appendChild(wrapSec(bp));
+
+    // deep dive
+    var dd=card(); head(dd,'Our deep dive');
+    var view=el('div','notes-view'); if(d.deep_dive_notes){view.textContent=d.deep_dive_notes;} else {view.appendChild(el('span','empty','Notes from our call will appear here.'));}
+    var ta=el('textarea','hidden'); ta.id='notes'; ta.value=d.deep_dive_notes||''; ta.setAttribute('aria-label','Deep dive notes');
+    dd.appendChild(view); dd.appendChild(ta); app.appendChild(wrapSec(dd));
+
+    // next steps
+    var ns=card(); head(ns,'Your prioritized next steps');
+    var steps=(d.next_steps&&d.next_steps.length)?d.next_steps:[{text:'',done:false},{text:'',done:false},{text:'',done:false}];
+    steps.forEach(function(st,i){var row=el('div','step'+(st.done?' done':'')); row.appendChild(el('div','num',String(i+1)));
+      var col=el('div'); var t=el('div','txt',st.text||''); if(!st.text){t.textContent='To be decided on our call'; t.classList.add('empty');}
+      var inp=el('input','hidden'); inp.type='text'; inp.value=st.text||''; inp.setAttribute('aria-label','Next step '+(i+1)); inp.dataset.i=i;
+      var lb=el('label','hidden'); var cb=el('input'); cb.type='checkbox'; cb.checked=!!st.done; cb.dataset.i=i; lb.appendChild(cb); lb.appendChild(document.createTextNode('Done'));
+      col.appendChild(t); col.appendChild(inp); col.appendChild(lb); row.appendChild(col); ns.appendChild(row);});
+    var bar=el('div','bar hidden'); bar.id='editbar';
+    var eb=el('button',null,'Edit notes & steps'); eb.id='editbtn';
+    var sb=el('button','primary hidden','Save to this page'); sb.id='savebtn';
+    var cx=el('button','hidden','Cancel'); cx.id='cancelbtn';
+    var stt=el('span','status'); stt.id='status';
+    bar.appendChild(eb); bar.appendChild(sb); bar.appendChild(cx); bar.appendChild(stt); ns.appendChild(bar);
+    app.appendChild(wrapSec(ns));
+
+    // feedback ask: on every audit page by default. "feedback": false in the data turns it off.
+    if(d.feedback!==false){var fb=d.feedback||{}; var fc=card('feedback');
+      fc.appendChild(el('p','eyebrow',fb.eyebrow||'One small ask'));
+      head(fc,fb.title||'Was this helpful?');
+      fc.appendChild(el('p','fb-body',fb.body||'If it was, would you share your feedback with me? Post it in your stories, share it inside the community, send me a voice note or a Loom, or just type it out. Whatever you’re most comfortable with.'));
+      fc.appendChild(el('p','fb-body',fb.why||'I thrive off the feedback. I want these audits to be really, really valuable, and your words help me make them better and reach more people. I would love it.'));
+      var fl=el('div','fb-links');
+      (fb.links||[{label:'Share it in the community',url:'https://www.skool.com/amanda'},{label:'Tag or DM me on Instagram',url:'https://www.instagram.com/amandafielding.smith/',note:'@amandafielding.smith'}]).forEach(function(x){var a=link(x.label,x.url); if(x.note) a.appendChild(el('span',null,x.note)); fl.appendChild(a);});
+      fc.appendChild(fl); app.appendChild(wrapSec(fc));}
+
+    app.appendChild(el('p','sign',d.signoff||'xoxo, Amanda 💜'));
+    if(canWrite) wireEditing();
+  }
+  function wrapSec(c){var s=el('section'); s.appendChild(c); return s;}
+
+  function setEditing(on){
+    document.querySelectorAll('.notes-view,.step .txt').forEach(function(n){n.classList.toggle('hidden',on);});
+    document.querySelectorAll('#notes,.step input[type=text],.step label').forEach(function(n){n.classList.toggle('hidden',!on);});
+    document.getElementById('editbtn').classList.toggle('hidden',on);
+    document.getElementById('savebtn').classList.toggle('hidden',!on);
+    document.getElementById('cancelbtn').classList.toggle('hidden',!on);
+    if(on) document.getElementById('notes').focus();
+  }
+  function wireEditing(){
+    document.getElementById('editbar').classList.remove('hidden');
+    document.getElementById('editbtn').onclick=function(){setEditing(true);};
+    document.getElementById('cancelbtn').onclick=function(){render();};
+    document.getElementById('savebtn').onclick=save;
+  }
+  function esc(json){return json.replace(/</g,'\\u003c');}
+  function buildDoc(data){
+    return '<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n<title>Your 1:1 Strategy Audit</title>\n<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">\n<style id="audit-css">'+CSS+'</style>\n</head>\n<body>\n<div class="wrap" id="app"></div>\n<script type="application/json" id="audit-data">'+esc(JSON.stringify(data))+'<\/script>\n<script id="audit-js">'+JS+'<\/script>\n</body>\n</html>\n';
+  }
+  function save(){
+    if(busy||!art) return; busy=true;
+    var st=document.getElementById('status'); st.textContent='Saving…';
+    var next=JSON.parse(JSON.stringify(DATA));
+    next.deep_dive_notes=document.getElementById('notes').value;
+    var rows=(next.next_steps&&next.next_steps.length)?next.next_steps:[{},{},{}];
+    document.querySelectorAll('.step input[type=text]').forEach(function(inp){var i=+inp.dataset.i; rows[i]=rows[i]||{}; rows[i].text=inp.value.trim();});
+    document.querySelectorAll('.step input[type=checkbox]').forEach(function(cb){var i=+cb.dataset.i; rows[i]=rows[i]||{}; rows[i].done=cb.checked;});
+    next.next_steps=rows;
+    try{sessionStorage.setItem('audit-unsaved',JSON.stringify({notes:next.deep_dive_notes,steps:rows}));}catch(e){}
+    art.publish(buildDoc(next)).then(function(){
+      try{sessionStorage.removeItem('audit-unsaved');}catch(e){}
+      st.textContent='Saved. Everyone with the link now sees this version.';
+    }).catch(function(err){
+      busy=false; var code=err&&err.code;
+      if(code==='conflict'){st.textContent='A newer version was saved elsewhere. Reloading it now.';}
+      else if(code==='not_writer'||code==='not_granted'){canWrite=false; render(); document.getElementById('status').textContent='This view is read-only.';}
+      else if(code==='rate_limited'){st.textContent='Saving too quickly. Wait a moment, then save again.';}
+      else {st.textContent='Couldn’t save just now. Your notes are still in the box.';}
+    });
+  }
+
+  render();
+
+  // Light up editing once the viewer confirms this page can publish itself.
+  // Hide it only when the viewer explicitly says this person can't edit.
+  function enable(){
+    if(canWrite) return; canWrite=true; render();
+    try{var un=JSON.parse(sessionStorage.getItem('audit-unsaved')||'null');
+      if(un){setEditing(true); document.getElementById('notes').value=un.notes||''; document.getElementById('status').textContent='Restored your unsaved notes.';}}catch(e){}
+  }
+  if(window.claude && typeof window.claude.use==='function'){
+    window.claude.use('artifact').then(function(a){
+      if(!a) return; art=a;
+      return window.claude.use('user').then(function(user){
+        if(!user) return enable();
+        var checks=[];
+        try{ if(typeof user.isOwner==='function') checks.push(user.isOwner()); if(typeof user.canEdit==='function') checks.push(user.canEdit()); }catch(e){}
+        if(!checks.length) return enable();
+        return Promise.all(checks).then(function(v){ if(v.some(Boolean)) enable(); });
+      }).catch(function(){ enable(); });
+    }).catch(function(){});
+  }
+})();
+</script>
+</body>
+</html>
